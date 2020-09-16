@@ -62,6 +62,7 @@
             <directory suffix=".php">./Modules</directory>
             <exclude>
                 <directory>./Modules/**/Config</directory>
+                <directory>./Modules/**/Database</directory>
                 <directory>./Modules/**/Resources</directory>
                 <directory>./Modules/**/Routes</directory>
                 <directory>./Modules/**/Tests</directory>
