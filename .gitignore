@@ -3,6 +3,7 @@ node_modules
 /public/storage
 /public/css/
 /public/js/
+/public/images/
 /public/mix-manifest.json
 /storage/*.key
 vendor
@@ -13,3 +14,4 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
