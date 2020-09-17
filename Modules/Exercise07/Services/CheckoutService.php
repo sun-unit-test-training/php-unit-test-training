@@ -16,13 +16,7 @@ class CheckoutService
         $shippingFee = Checkout::SHIPPING_FEE;
         $shippingExpressFee = Checkout::SHIPPING_EXPRESS_FEE;
 
-        if ($order['amount'] >= Checkout::FREE_SHIPPING_AMOUNT) {
-            $order['shipping_fee'] = 0;
-
-            return $order;
-        }
-
-        if (!empty($order['premium_member'])) {
+        if ($order['amount'] >= Checkout::FREE_SHIPPING_AMOUNT || !empty($order['premium_member'])) {
             $shippingFee = 0;
         }
 
