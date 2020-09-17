@@ -4,8 +4,8 @@ namespace Modules\Exercise07\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Support\Renderable;
-use Modules\Exercise07\Http\Requests\CheckoutRequest;
 use Modules\Exercise07\Services\CheckoutService;
+use Modules\Exercise07\Http\Requests\CheckoutRequest;
 
 class CheckoutController extends Controller
 {
