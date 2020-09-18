@@ -4,12 +4,12 @@ namespace Modules\Exercise03\Tests\Repositories;
 
 use Tests\TestCase;
 use Modules\Exercise03\Entities\Product;
-use Modules\Exercise03\Repositories\EloquentProductRepository;
+use Modules\Exercise03\Repositories\ProductRepository;
 
-class EloquentProductRepositoryTest extends TestCase
+class ProductRepositoryTest extends TestCase
 {
     /**
-     * @var EloquentProductRepository
+     * @var ProductRepository
      */
     protected $eloquentProductRepository;
 
@@ -23,7 +23,7 @@ class EloquentProductRepositoryTest extends TestCase
         parent::setUp();
 
         $this->mockedProductModel = \Mockery::mock(Product::class);
-        $this->eloquentProductRepository = new EloquentProductRepository(
+        $this->eloquentProductRepository = new ProductRepository(
             $this->mockedProductModel
         );
     }

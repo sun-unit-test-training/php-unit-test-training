@@ -53,9 +53,4 @@ class CheckoutRequestTest extends TestCase
 
         $this->assertTrue($validator->passes());
     }
-
-    public function test_function_authorize()
-    {
-        $this->assertTrue($this->checkoutRequest->authorize());
-    }
 }

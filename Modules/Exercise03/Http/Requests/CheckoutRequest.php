@@ -18,14 +18,4 @@ class CheckoutRequest extends FormRequest
             'total_products.*' => 'nullable|integer|min:0',
         ];
     }
-
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
 }

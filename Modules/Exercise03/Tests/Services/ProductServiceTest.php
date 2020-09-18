@@ -6,7 +6,7 @@ use Tests\TestCase;
 use InvalidArgumentException;
 use Modules\Exercise03\Entities\Product;
 use Modules\Exercise03\Services\ProductService;
-use Modules\Exercise03\Repositories\EloquentProductRepository;
+use Modules\Exercise03\Repositories\ProductRepository;
 
 /**
  * Class ProductServiceTest
@@ -20,7 +20,7 @@ class ProductServiceTest extends TestCase
     protected $productService;
 
     /**
-     * @var \Mockery\LegacyMockInterface|\Mockery\MockInterface|EloquentProductRepository
+     * @var \Mockery\LegacyMockInterface|\Mockery\MockInterface|ProductRepository
      */
     protected $productRepository;
 
@@ -28,7 +28,7 @@ class ProductServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->productRepository = \Mockery::mock(EloquentProductRepository::class);
+        $this->productRepository = \Mockery::mock(ProductRepository::class);
         $this->productService = new ProductService(
             $this->productRepository
         );

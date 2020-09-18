@@ -4,7 +4,7 @@ namespace Modules\Exercise03\Services;
 
 use InvalidArgumentException;
 use Modules\Exercise03\Entities\Product;
-use Modules\Exercise03\Repositories\EloquentProductRepository;
+use Modules\Exercise03\Repositories\ProductRepository;
 
 /**
  * Class ProductService
@@ -17,15 +17,15 @@ class ProductService
     const TOTAL_PRODUCT_TO_DISCOUNT = 7;
 
     /**
-     * @var EloquentProductRepository
+     * @var ProductRepository
      */
     protected $productRepository;
 
     /**
      * ProductService constructor.
-     * @param EloquentProductRepository $productRepository
+     * @param ProductRepository $productRepository
      */
-    public function __construct(EloquentProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }
