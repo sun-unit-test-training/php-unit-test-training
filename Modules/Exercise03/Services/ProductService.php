@@ -4,6 +4,7 @@ namespace Modules\Exercise03\Services;
 
 use InvalidArgumentException;
 use Modules\Exercise03\Entities\Product;
+use Modules\Exercise03\Repositories\EloquentProductRepository;
 
 /**
  * Class ProductService
@@ -12,9 +13,26 @@ use Modules\Exercise03\Entities\Product;
 class ProductService
 {
     const CRAVAT_WHITE_SHIRT_DISCOUNT = 5;
-    const MORE_THAN_7_DISCOUNT = 7;
+    const QUANTITY_DISCOUNT = 7;
+    const TOTAL_PRODUCT_TO_DISCOUNT = 7;
 
     /**
+     * @var EloquentProductRepository
+     */
+    protected $productRepository;
+
+    /**
+     * ProductService constructor.
+     * @param EloquentProductRepository $productRepository
+     */
+    public function __construct(EloquentProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
+    /**
+     * Calculate discount by products
+     *
      * @param $totalProducts
      * @return mixed
      */
@@ -33,10 +51,20 @@ class ProductService
             $discount = self::CRAVAT_WHITE_SHIRT_DISCOUNT;
         }
 
-        if (($cravat + $whiteShirt + $others) > 7) {
-            $discount += self::MORE_THAN_7_DISCOUNT;
+        if (($cravat + $whiteShirt + $others) >= self::TOTAL_PRODUCT_TO_DISCOUNT) {
+            $discount += self::QUANTITY_DISCOUNT;
         }
 
         return $discount;
+    }
+
+    /**
+     * Get all of products
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|Product[]
+     */
+    public function getAllProducts()
+    {
+        return $this->productRepository->all();
     }
 }

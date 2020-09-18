@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Modules\Exercise03\Services\ProductService;
 use Modules\Exercise03\Http\Requests\CheckoutRequest;
 use Modules\Exercise03\Http\Controllers\ProductController;
-use Modules\Exercise03\Repositories\EloquentProductRepository;
 
 /**
  * TODO: make real test
@@ -25,24 +24,17 @@ class ProductControllerTest extends TestCase
      */
     protected $productService;
 
-    /**
-     * @var \Mockery\LegacyMockInterface|\Mockery\MockInterface|EloquentProductRepository
-     */
-    protected $productRepository;
-
     protected function setUp(): void
     {
         parent::setup();
 
         $this->productService = \Mockery::mock(ProductService::class);
-        $this->productRepository = \Mockery::mock(EloquentProductRepository::class);
         $this->productController = new ProductController(
-            $this->productService,
-            $this->productRepository
+            $this->productService
         );
     }
 
-    public function test_function_checkout()
+    public function test_checkout_returns_json_response()
     {
         $mockedRequest = \Mockery::mock(CheckoutRequest::class);
         $mockedRequest->shouldReceive('input')->andReturn([]);
@@ -54,10 +46,10 @@ class ProductControllerTest extends TestCase
         $this->assertEquals(['discount' => $discount], $response->getOriginalContent());
     }
 
-    public function test_function_index()
+    public function test_index_returns_view()
     {
         $products = ['foo' => 'bar'];
-        $this->productRepository->shouldReceive('all')->andReturn($products);
+        $this->productService->shouldReceive('getAllProducts')->andReturn($products);
         $response = $this->productController->index();
 
         $this->assertInstanceOf(View::class, $response);

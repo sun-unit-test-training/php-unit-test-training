@@ -6,6 +6,7 @@ use Tests\TestCase;
 use InvalidArgumentException;
 use Modules\Exercise03\Entities\Product;
 use Modules\Exercise03\Services\ProductService;
+use Modules\Exercise03\Repositories\EloquentProductRepository;
 
 /**
  * Class ProductServiceTest
@@ -18,14 +19,22 @@ class ProductServiceTest extends TestCase
      */
     protected $productService;
 
+    /**
+     * @var \Mockery\LegacyMockInterface|\Mockery\MockInterface|EloquentProductRepository
+     */
+    protected $productRepository;
+
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->productService = new ProductService();
+        $this->productRepository = \Mockery::mock(EloquentProductRepository::class);
+        $this->productService = new ProductService(
+            $this->productRepository
+        );
     }
 
-    public function test_it_throw_exception_when_number_product_negative()
+    public function test_it_throws_exception_when_number_product_negative()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->productService->calculateDiscount([
@@ -41,11 +50,19 @@ class ProductServiceTest extends TestCase
      * @dataProvider providerTestCalculateExercise1
      * @dataProvider providerTestCalculateExercise2
      */
-    public function test_calculate_discount($passedParams, $expectedDiscount)
+    public function test_it_calculates_discount($passedParams, $expectedDiscount)
     {
         $result = $this->productService->calculateDiscount($passedParams);
 
         $this->assertEquals($result, $expectedDiscount);
+    }
+
+    public function test_it_gets_all_products_returns_collection()
+    {
+        $expected = collect(['foo' => 'bar']);
+        $this->productRepository->shouldReceive('all')->andReturn($expected);
+
+        $this->assertEquals($expected, $this->productService->getAllProducts());
     }
 
     /**
@@ -57,31 +74,31 @@ class ProductServiceTest extends TestCase
         return [
             /**
              * TC1
-             * total > 7
+             * total >= 7
              * have cravat
              * have white shirt
              */
             [
                 [
-                    Product::CRAVAT_TYPE => 7,
+                    Product::CRAVAT_TYPE => 6,
                     Product::WHITE_SHIRT_TYPE => 1,
                 ],
                 12,
             ],
             /**
              * TC2
-             * total > 7
+             * total >= 7
              * have only white shirt
              */
             [
                 [
-                    Product::WHITE_SHIRT_TYPE => 8,
+                    Product::WHITE_SHIRT_TYPE => 7,
                 ],
                 7,
             ],
             /**
              * TC3
-             * total > 7
+             * total >= 7
              * have only cravat
              */
             [
@@ -92,35 +109,35 @@ class ProductServiceTest extends TestCase
             ],
             /**
              * TC4
-             * total <= 7
+             * total < 7
              * have both white shirt and cravat
              */
             [
                 [
-                    Product::CRAVAT_TYPE => 1,
-                    Product::WHITE_SHIRT_TYPE => 1,
+                    Product::CRAVAT_TYPE => 3,
+                    Product::WHITE_SHIRT_TYPE => 3,
                 ],
                 5,
             ],
             /**
              * TC5
-             * total <= 7
+             * total < 7
              * have only white shirt
              */
             [
                 [
-                    Product::WHITE_SHIRT_TYPE => 1,
+                    Product::WHITE_SHIRT_TYPE => 3,
                 ],
                 0,
             ],
             /**
              * TC6
-             * total <= 7
+             * total < 7
              * have no cravat or white shirt
              */
             [
                 [
-                    Product::OTHER_TYPE => 1,
+                    Product::OTHER_TYPE => 6,
                 ],
                 0,
             ],
@@ -138,20 +155,20 @@ class ProductServiceTest extends TestCase
         return [
             /**
              * TC1
-             * total > 7
+             * total >= 7
              * have cravat
              * have white shirt
              */
             [
                 [
-                    Product::CRAVAT_TYPE => 7,
+                    Product::CRAVAT_TYPE => 6,
                     Product::WHITE_SHIRT_TYPE => 1,
                 ],
                 12,
             ],
             /**
              * TC2
-             * total > 7
+             * total >= 7
              * have only white shirt
              */
             [
@@ -162,18 +179,18 @@ class ProductServiceTest extends TestCase
             ],
             /**
              * TC3
-             * total > 7
+             * total >= 7
              * have only cravat
              */
             [
                 [
-                    Product::CRAVAT_TYPE => 8,
+                    Product::CRAVAT_TYPE => 10,
                 ],
                 7,
             ],
             /**
              * TC4
-             * total > 7
+             * total >= 7
              * have no cravat and white shirt
              */
             [
@@ -184,7 +201,7 @@ class ProductServiceTest extends TestCase
             ],
             /**
              * TC5
-             * total > 7
+             * total < 7
              * have both white shirt and cravat
              */
             [
@@ -196,7 +213,7 @@ class ProductServiceTest extends TestCase
             ],
             /**
              * TC6
-             * total <= 7
+             * total < 7
              * have only white shirt
              */
             [
@@ -207,12 +224,12 @@ class ProductServiceTest extends TestCase
             ],
             /**
              * TC7
-             * total <= 7
-             * have no cravat or white shirt
+             * total < 7
+             * have only white shirt cravat
              */
             [
                 [
-                    Product::CRAVAT_TYPE => 1,
+                    Product::CRAVAT_TYPE => 6,
                 ],
                 0,
             ],

@@ -16,22 +16,15 @@ class ProductController extends Controller
     /**
      * @var ProductService
      */
-    private $productService;
-
-    /**
-     * @var EloquentProductRepository
-     */
-    private $productRepository;
+    protected $productService;
 
     /**
      * ProductController constructor.
      * @param ProductService $productService
-     * @param EloquentProductRepository $productRepository
      */
-    public function __construct(ProductService $productService, EloquentProductRepository $productRepository)
+    public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
-        $this->productRepository = $productRepository;
     }
 
     /**
@@ -39,7 +32,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->productRepository->all();
+        $products = $this->productService->getAllProducts();
 
         return view('exercise03::index', compact('products'));
     }
