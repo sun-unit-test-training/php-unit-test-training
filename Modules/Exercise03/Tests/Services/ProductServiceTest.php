@@ -225,7 +225,7 @@ class ProductServiceTest extends TestCase
             /**
              * TC7
              * total < 7
-             * have only white shirt cravat
+             * have only cravat
              */
             [
                 [
