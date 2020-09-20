@@ -18,7 +18,8 @@ class CardLevelEloquent implements CardLevelRepository
     {
         return $this->model
             ->where('type', $type)
-            ->where('amount_limit', '>=', $amountLimit)
+            ->where('amount_limit', '<=', $amountLimit)
+            ->orderByDesc('amount_limit')
             ->first($columns);
     }
 }
