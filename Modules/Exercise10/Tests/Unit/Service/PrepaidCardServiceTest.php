@@ -26,7 +26,6 @@ class PrepaidCardServiceTest extends TestCase
         parent::setUp();
         $this->repositoryMock = m::mock(CardLevelRepository::class);
         $this->service = new PrepaidCardService($this->repositoryMock);
-        $this->app->instance(CardLevelRepository::class, $this->repositoryMock);
     }
 
     protected function verifyUseCase($data, $model)
