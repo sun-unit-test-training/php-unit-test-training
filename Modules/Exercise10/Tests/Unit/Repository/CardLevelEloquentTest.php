@@ -21,9 +21,13 @@ class CardLevelEloquentTest extends TestCase
     {
         $expected = new CardLevel();
         $mModel = m::mock(CardLevel::class);
-        $mModel->shouldReceive('where->where->orderByDesc->first')
-            ->once()
-            ->andReturn($expected);
+
+        // Mock query builder twice where
+        $mModel->shouldReceive('where')->twice()->andReturn($mModel);
+        // Mock query builder orderByDesc
+        $mModel->shouldReceive('orderByDesc')->times(1)->andReturn($mModel);;
+        // Mock Results of query in model
+        $mModel->shouldReceive('first')->andReturn($expected);
 
         $repo = new CardLevelEloquent($mModel);
 
