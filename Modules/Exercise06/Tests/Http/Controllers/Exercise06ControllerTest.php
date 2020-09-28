@@ -9,9 +9,6 @@ use Modules\Exercise06\Http\Requests\Exercise06Request;
 use Modules\Exercise06\Services\CaculateService;
 use Tests\TestCase;
 
-/**
- * TODO: make real test
- */
 class Exercise06ControllerTest extends TestCase
 {
     /**
@@ -49,7 +46,7 @@ class Exercise06ControllerTest extends TestCase
     public function test_function_caculate()
     {
         $request = \Mockery::mock(Exercise06Request::class);
-        $request->shouldReceive('validated')->andReturn([git 
+        $request->shouldReceive('validated')->andReturn([
             'bill' => 200,
         ]);
         $time = 0;

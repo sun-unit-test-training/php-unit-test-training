@@ -8,9 +8,6 @@ use Tests\SetupDatabaseTrait;
 use Illuminate\Http\Response;
 use Modules\Exercise10\Database\Seeders\Exercise10DatabaseSeeder;
 
-/**
- * TODO: make real test
- */
 class Exercise10ControllerTest extends TestCase
 {
     use SetupDatabaseTrait;

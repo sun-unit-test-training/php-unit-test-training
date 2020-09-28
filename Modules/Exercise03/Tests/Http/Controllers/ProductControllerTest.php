@@ -9,9 +9,6 @@ use Modules\Exercise03\Services\ProductService;
 use Modules\Exercise03\Http\Requests\CheckoutRequest;
 use Modules\Exercise03\Http\Controllers\ProductController;
 
-/**
- * TODO: make real test
- */
 class ProductControllerTest extends TestCase
 {
     /**

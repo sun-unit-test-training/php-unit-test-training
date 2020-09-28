@@ -5,9 +5,6 @@ namespace Modules\Exercise05\Tests\Http\Controllers;
 use Tests\TestCase;
 use Modules\Exercise05\Http\Controllers\Exercise05Controller;
 
-/**
- * TODO: make real test
- */
 class Exercise05ControllerTest extends TestCase
 {
     public function test_can_create_order_success()
@@ -41,7 +38,7 @@ class Exercise05ControllerTest extends TestCase
 
         $this->postJson($url, $attribute)
         ->assertStatus(422)
-        ->assertJsonStructure(['message', 'errors' => ['price']]);    
+        ->assertJsonStructure(['message', 'errors' => ['price']]);
     }
 
 }

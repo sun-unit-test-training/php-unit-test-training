@@ -5,11 +5,7 @@ namespace Modules\Exercise08\Tests\Http\Controllers;
 use Modules\Exercise08\Http\Controllers\TicketController;
 use Modules\Exercise08\Services\TicketService;
 use Tests\TestCase;
-use Illuminate\View\View;
 
-/**
- * TODO: make real test
- */
 class TicketControllerTest extends TestCase
 {
     protected $ticketController;

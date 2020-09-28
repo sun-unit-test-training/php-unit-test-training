@@ -12,6 +12,6 @@
 */
 
 Route::prefix('exercise05')->group(function () {
-    Route::get('/discount', 'Exercise05Controller@index');
-    Route::post('/discount', 'Exercise05Controller@store')->name('store_discount');
+    Route::get('/', 'Exercise05Controller@index');
+    Route::post('/', 'Exercise05Controller@store')->name('store_discount');
 });

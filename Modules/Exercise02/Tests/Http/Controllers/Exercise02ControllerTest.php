@@ -12,9 +12,6 @@ use Modules\Exercise02\Repositories\ATMRepository;
 use Modules\Exercise02\Services\ATMService;
 use Tests\SetupDatabaseTrait;
 
-/**
- * TODO: make real test
- */
 class Exercise02ControllerTest extends TestCase
 {
     use SetupDatabaseTrait;
