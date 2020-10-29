@@ -10,7 +10,7 @@ class PriceService
 {
     const UNIT_PRICE = 490;
     const VOUCHER_UNIT_PRICE = 100;
-    const SPECIAL_TIME_UNIT_PRICE = 100;
+    const SPECIAL_TIME_UNIT_PRICE = 290;
     const SPECIAL_TIME_PERIOD = ['16:00', '17:59'];
 
     /**

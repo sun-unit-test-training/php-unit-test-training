@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise01\Tests\Models;
+namespace Modules\Exercise01\Tests\Feature\Models;
 
 use Modules\Exercise01\Models\Voucher;
 use Tests\SetupDatabaseTrait;
