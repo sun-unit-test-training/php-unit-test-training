@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise03\Tests\Services;
+namespace Modules\Exercise03\Tests\Unit\Services;
 
 use Tests\TestCase;
 use InvalidArgumentException;
