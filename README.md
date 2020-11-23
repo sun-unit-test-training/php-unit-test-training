@@ -1,7 +1,6 @@
 # PHP unit test training
 **NOTE**: this is ***beginner*** course, so we try to implement it in simple way.
-- Please don't care about Unit test vs Integration Test
-- All tests are written in folder `Tests/`
+- Write Feature Test
 
 ## Setup
 ```sh
