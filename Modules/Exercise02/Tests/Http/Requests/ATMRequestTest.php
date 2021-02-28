@@ -42,7 +42,7 @@ class ATMRequestTest extends TestCase
     public function test_validation_success()
     {
         $request = new ATMRequest();
-        $card = factory(ATM::class)->create()->fresh();
+        $card = ATM::factory()->create()->fresh();
         $validator = Validator::make([
             'card_id' => $card->card_id,
         ], $request->rules());

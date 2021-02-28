@@ -51,7 +51,7 @@ class Exercise02ControllerTest extends TestCase
     public function test_function_caculate()
     {
         $request = \Mockery::mock(ATMRequest::class);
-        $card = factory(ATM::class)->state('is_vip')->create()->fresh();
+        $card = ATM::factory()->isVip()->create()->fresh();
         $request->shouldReceive('validated')->andReturn([
             'card_id' => $card->card_id,
         ]);
@@ -59,6 +59,6 @@ class Exercise02ControllerTest extends TestCase
         $response = $this->controller->takeATMFee($request);
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertEquals($correctAnswer,  $response->getSession()->all()['caculate']);
+        $this->assertEquals($correctAnswer, $response->getSession()->all()['caculate']);
     }
 }

@@ -23,8 +23,8 @@ class ATMServiceTest extends TestCase
         parent::setUp();
         $atmRepositiory = new ATMRepository(new ATM());
         $this->atmService = new ATMService($atmRepositiory);
-        $this->vipCard = factory(ATM::class)->state('is_vip')->create()->fresh();
-        $this->notVipCard = factory(ATM::class)->state('is_not_vip')->create()->fresh();
+        $this->vipCard = ATM::factory()->isVip()->create()->fresh();
+        $this->notVipCard = ATM::factory()->isNotVip()->create()->fresh();
     }
 
     public function test_it_throw_exception_when_card_does_not_exist()
