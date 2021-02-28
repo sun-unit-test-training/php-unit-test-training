@@ -5,6 +5,7 @@
 
 # Using phpdbg
 # docker-compose exec -T php phpdbg -qrr ./vendor/bin/phpunit $@
+# docker-compose exec -T php phpdbg -qrr artisan test --without-tty --parallel --recreate-databases $@
 
 # Using xdebug
 docker-compose exec -T php php -dzend_extension=xdebug.so ./vendor/bin/phpunit $@
