@@ -80,7 +80,7 @@ class OrderControllerTest extends TestCase
 
     function test_it_show_error_when_input_non_existence_voucher_code()
     {
-        factory(Voucher::class)->state('active')->create(['code' => 'existed-voucher']);
+        Voucher::factory()->active()->create(['code' => 'existed-voucher']);
 
         $url = action([OrderController::class, 'create']);
 
@@ -95,7 +95,7 @@ class OrderControllerTest extends TestCase
 
     function test_it_show_error_when_input_inactive_voucher_code()
     {
-        factory(Voucher::class)->state('inactive')->create(['code' => 'existed-voucher']);
+        Voucher::factory()->inactive()->create(['code' => 'existed-voucher']);
 
         $url = action([OrderController::class, 'create']);
 
@@ -109,7 +109,7 @@ class OrderControllerTest extends TestCase
 
     function test_it_create_order_when_input_valid_quantity_and_voucher_code()
     {
-        factory(Voucher::class)->state('active')->create(['code' => 'existed-voucher']);
+        Voucher::factory()->active()->create(['code' => 'existed-voucher']);
 
         $url = action([OrderController::class, 'create']);
 
@@ -140,7 +140,7 @@ class OrderControllerTest extends TestCase
         $quantity = 5;
         $expectedTotal = 100 * 1 + 290 * 4;
 
-        factory(Voucher::class)->state('active')->create(['code' => 'existed-voucher']);
+        Voucher::factory()->active()->create(['code' => 'existed-voucher']);
 
         $url = action([OrderController::class, 'create']);
 
@@ -219,7 +219,7 @@ class OrderControllerTest extends TestCase
         $quantity = 5;
         $expectedTotal = 100 * 1 + 490 * 4;
 
-        factory(Voucher::class)->state('active')->create(['code' => 'existed-voucher']);
+        Voucher::factory()->active()->create(['code' => 'existed-voucher']);
 
         $url = action([OrderController::class, 'create']);
 

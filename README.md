@@ -1,6 +1,4 @@
 # PHP unit test training
-**NOTE**: this is ***beginner*** course, so we try to implement it in simple way.
-- Write Feature Test
 
 ## Setup
 ```sh
@@ -17,6 +15,9 @@ To prevent conflict, each exercise is organized in its own folder with the help 
 Start implementing and writing unit tests for each exercise.
 
 ## Run phpunit
+```sh
+cp .env.testing.example .env.testing
+```
 
 Run all:
 ```sh

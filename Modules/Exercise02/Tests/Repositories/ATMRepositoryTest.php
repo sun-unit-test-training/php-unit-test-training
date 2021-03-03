@@ -25,7 +25,7 @@ class ATMRepositoryTest extends TestCase
 
     public function test_it_can_find()
     {
-        $card = factory(ATM::class)->create()->fresh();
+        $card = ATM::factory()->create()->fresh();
 
         $this->assertEquals($card, $this->repository->find($card->card_id));
     }
