@@ -71,7 +71,7 @@ class PriceServiceTest extends TestCase
      * ```
      * => Test still pass, but wrong logic for the case not in special time (*2)
      */
-    public function test_it_create_order_when_input_many_cups_no_voucher_in_special_time()
+    function test_it_create_order_when_input_many_cups_no_voucher_in_special_time()
     {
         $orderDate = Carbon::parse('2020-09-15 16:10');
         Carbon::setTestNow($orderDate);
@@ -87,7 +87,7 @@ class PriceServiceTest extends TestCase
     /**
      * Test case to cover (*2)
      */
-    public function test_it_create_order_when_input_many_cups_no_voucher_no_special_time()
+    function test_it_create_order_when_input_many_cups_no_voucher_no_special_time()
     {
         $orderDate = Carbon::parse('2020-09-15 15:30');
         Carbon::setTestNow($orderDate);
@@ -105,7 +105,7 @@ class PriceServiceTest extends TestCase
      *
      * Test case to ensure voucher does not depends on special time
      */
-    public function test_it_create_order_when_input_many_cups_with_voucher_no_special_time($orderDate)
+    function test_it_create_order_when_input_many_cups_with_voucher_no_special_time($orderDate)
     {
         Carbon::setTestNow($orderDate);
         $priceService = new PriceService;
@@ -117,7 +117,7 @@ class PriceServiceTest extends TestCase
         $this->assertEquals($expectedTotal, $price->getTotal());
     }
 
-    public function provideNoSpecialTime()
+    function provideNoSpecialTime()
     {
         return [
             [Carbon::parse('2020-09-15 15:59')],
@@ -125,7 +125,7 @@ class PriceServiceTest extends TestCase
         ];
     }
 
-    public function test_it_create_order_when_input_1_cup_no_voucher_no_special_time()
+    function test_it_create_order_when_input_1_cup_no_voucher_no_special_time()
     {
         $orderDate = Carbon::parse('2020-09-15 18:00');
         Carbon::setTestNow($orderDate);
@@ -138,7 +138,7 @@ class PriceServiceTest extends TestCase
         $this->assertEquals($expectedTotal, $price->getTotal());
     }
 
-    public function test_it_create_order_when_input_1_cup_no_voucher_in_special_time()
+    function test_it_create_order_when_input_1_cup_no_voucher_in_special_time()
     {
         $orderDate = Carbon::parse('2020-09-15 16:00');
         Carbon::setTestNow($orderDate);

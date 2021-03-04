@@ -22,7 +22,7 @@ class VoucherTest extends TestCase
      *
      * But it is added to ensure we initialize property correctly
      */
-    public function test_field_is_active_is_cast_to_boolean()
+    function test_field_is_active_is_cast_to_boolean()
     {
         $inputs = [
             'code' => 'voucher-code',

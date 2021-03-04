@@ -16,7 +16,7 @@ class VoucherTest extends TestCase
      *
      * But it is added to ensure we initialize property correctly
      */
-    public function test_fields_are_fillable()
+    function test_fields_are_fillable()
     {
         $inputs = [
             'code' => 'voucher-code',
