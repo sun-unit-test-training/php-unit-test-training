@@ -39,6 +39,15 @@ class OrderControllerTest extends TestCase
         $response->assertSessionMissing('order');
     }
 
+    function test_it_show_error_when_missing_input_quantity()
+    {
+        $url = action([OrderController::class, 'create']);
+
+        $response = $this->post($url);
+
+        $response->assertSessionHasErrors(['quantity']);
+    }
+
     /**
      * @dataProvider provideWrongQuantity
      */
