@@ -6,7 +6,7 @@ use Modules\Exercise09\Constants\Combat;
 use Modules\Exercise09\Services\CombatService;
 use Tests\TestCase;
 
-class AttackBossServiceTest extends TestCase
+class CombatServiceTest extends TestCase
 {
     private $defaultInput;
 
