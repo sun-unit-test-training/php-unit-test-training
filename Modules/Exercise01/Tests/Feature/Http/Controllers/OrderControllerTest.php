@@ -2,16 +2,26 @@
 
 namespace Modules\Exercise01\Tests\Feature\Http\Controllers;
 
-use Carbon\Carbon;
 use Tests\TestCase;
 use Modules\Exercise01\Http\Controllers\OrderController;
 use Modules\Exercise01\Models\Voucher;
 use Modules\Exercise01\Services\DTO\Price;
+use Modules\Exercise01\Services\PriceService;
 use Tests\SetupDatabaseTrait;
 
 class OrderControllerTest extends TestCase
 {
     use SetupDatabaseTrait;
+
+    protected $priceServiceMock;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // Laravel helper: mock and bind to service container
+        $this->priceServiceMock = $this->mock(PriceService::class);
+    }
 
     function test_it_show_form_order()
     {
@@ -27,6 +37,15 @@ class OrderControllerTest extends TestCase
             'specialTimePeriod',
         ]);
         $response->assertSessionMissing('order');
+    }
+
+    function test_it_show_error_when_missing_input_quantity()
+    {
+        $url = action([OrderController::class, 'create']);
+
+        $response = $this->post($url);
+
+        $response->assertSessionHasErrors(['quantity']);
     }
 
     /**
@@ -110,6 +129,10 @@ class OrderControllerTest extends TestCase
     function test_it_create_order_when_input_valid_quantity_and_voucher_code()
     {
         Voucher::factory()->active()->create(['code' => 'existed-voucher']);
+        $dummyPrice = new Price(100, 0, 0);
+        $this->priceServiceMock
+            ->shouldReceive('calculate')
+            ->andReturn($dummyPrice);
 
         $url = action([OrderController::class, 'create']);
 
@@ -124,120 +147,5 @@ class OrderControllerTest extends TestCase
         $response->assertSessionHas('order', function ($order) {
             return $order['quantity'] == 1 && $order['price'] instanceof Price;
         });
-    }
-
-    /**
-     * @dataProvider provideSpecialTime
-     *
-     * C0 test for PriceService, 100% coverage, but if we change
-     * - $voucherDiscount = 0;
-     * + $voucherDiscount = 10;
-     * => Test still pass, but wrong logic for the case not use voucher (*1)
-     */
-    public function test_it_create_order_when_input_many_cups_with_voucher_in_special_time($orderDate)
-    {
-        Carbon::setTestNow($orderDate);
-        $quantity = 5;
-        $expectedTotal = 100 * 1 + 290 * 4;
-
-        Voucher::factory()->active()->create(['code' => 'existed-voucher']);
-
-        $url = action([OrderController::class, 'create']);
-
-        $response = $this->post($url, [
-            'quantity' => $quantity,
-            'voucher' => 'existed-voucher',
-        ]);
-
-        $response->assertSessionHas('order', function ($order) use ($expectedTotal) {
-            return $order['price']->getTotal() === $expectedTotal;
-        });
-    }
-
-    public function provideSpecialTime()
-    {
-        return [
-            [Carbon::parse('2020-09-15 16:00')],
-            [Carbon::parse('2020-09-15 16:01')],
-            [Carbon::parse('2020-09-15 17:59')],
-            [Carbon::parse('2020-09-15 17:58')],
-        ];
-    }
-
-    /**
-     * Test case to cover (*1)
-     * But if we change
-     * - $specialTimeDiscount = 0;
-     * + $specialTimeDiscount = 10;
-     * => Test still pass, but wrong logic for the case not in special time (*2)
-     */
-    public function test_it_create_order_when_input_many_cups_no_voucher_in_special_time()
-    {
-        $orderDate = Carbon::parse('2020-09-15 16:10');
-        Carbon::setTestNow($orderDate);
-
-        $url = action([OrderController::class, 'create']);
-
-        $response = $this->post($url, [
-            'quantity' => 8,
-        ]);
-
-        $response->assertSessionHas('order', function ($order) {
-            $expectedTotal = 290 * 8;
-            return $order['price']->getTotal() === $expectedTotal;
-        });
-    }
-
-    /**
-     * Test case to cover (*2)
-     */
-    public function test_it_create_order_when_input_many_cups_no_voucher_no_special_time()
-    {
-        $orderDate = Carbon::parse('2020-09-15 15:30');
-        Carbon::setTestNow($orderDate);
-
-        $url = action([OrderController::class, 'create']);
-
-        $response = $this->post($url, [
-            'quantity' => 10,
-        ]);
-
-        $response->assertSessionHas('order', function ($order) {
-            $expectedTotal = 490 * 10;
-            return $order['price']->getTotal() === $expectedTotal;
-        });
-    }
-
-    /**
-     * @dataProvider provideNoSpecialTime
-     *
-     * Test case to ensure voucher does not depends on special time
-     */
-    public function test_it_create_order_when_input_many_cups_with_voucher_no_special_time($orderDate)
-    {
-        Carbon::setTestNow($orderDate);
-        $quantity = 5;
-        $expectedTotal = 100 * 1 + 490 * 4;
-
-        Voucher::factory()->active()->create(['code' => 'existed-voucher']);
-
-        $url = action([OrderController::class, 'create']);
-
-        $response = $this->post($url, [
-            'quantity' => $quantity,
-            'voucher' => 'existed-voucher',
-        ]);
-
-        $response->assertSessionHas('order', function ($order) use ($expectedTotal) {
-            return $order['price']->getTotal() === $expectedTotal;
-        });
-    }
-
-    public function provideNoSpecialTime()
-    {
-        return [
-            [Carbon::parse('2020-09-15 15:59')],
-            [Carbon::parse('2020-09-15 18:00')],
-        ];
     }
 }

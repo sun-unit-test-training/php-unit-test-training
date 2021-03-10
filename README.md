@@ -40,3 +40,19 @@ Run only one module (see testsuites in `phpunit.xml`)
 ```
 
 **NOTE**: You can edit file `./phpunit.sh` to use other phpunit code coverage driver. `pcov` or `phpdbg` can generate code coverage much faster than `xdebug`. Please try!
+
+## Run infection
+Run all:
+```sh
+./infection.sh
+```
+
+Run only one module:
+```sh
+./infection.sh --filter=Exercise01
+```
+
+Run only one file:
+```sh
+./infection.sh --filter=Modules/Exercise01/Http/Controllers/OrderController.php
+```
