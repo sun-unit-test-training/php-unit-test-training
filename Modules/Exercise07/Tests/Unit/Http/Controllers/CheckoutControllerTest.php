@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise07\Tests\Http\Controllers;
+namespace Modules\Exercise07\Tests\Unit\Http\Controllers;
 
 use Mockery as m;
 use Tests\TestCase;
@@ -16,11 +16,8 @@ class CheckoutControllerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->afterApplicationCreated(function () {
-            $this->checkoutServiceMock = m::mock($this->app->make(CheckoutService::class));
-        });
-
         parent::setUp();
+        $this->checkoutServiceMock = m::mock(CheckoutService::class);
     }
 
     public function test_index_returns_view()

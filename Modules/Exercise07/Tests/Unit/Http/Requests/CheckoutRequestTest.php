@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise07\Tests\Http\Requests;
+namespace Modules\Exercise07\Tests\Unit\Http\Requests;
 
 use Modules\Exercise07\Http\Requests\CheckoutRequest;
 use Tests\TestCase;
@@ -44,6 +44,8 @@ class CheckoutRequestTest extends TestCase
 
         $validator = Validator::make($input, $this->checkoutRequest->rules());
         $this->assertTrue($validator->fails());
+        //or
+        //$this->assertFalse($validator->passes());
         $errors = $validator->errors();
         $this->assertEquals($expected, $errors->getMessages());
     }
@@ -64,6 +66,8 @@ class CheckoutRequestTest extends TestCase
 
         $validator = Validator::make($input, $this->checkoutRequest->rules());
         $this->assertTrue($validator->fails());
+        //or
+        //$this->assertFalse($validator->passes());
         $errors = $validator->errors();
         $this->assertEquals($expected, $errors->getMessages());
     }
@@ -84,6 +88,8 @@ class CheckoutRequestTest extends TestCase
 
         $validator = Validator::make($input, $this->checkoutRequest->rules());
         $this->assertTrue($validator->fails());
+        //or
+        //$this->assertFalse($validator->passes());
         $errors = $validator->errors();
         $this->assertEquals($expected, $errors->getMessages());
     }
