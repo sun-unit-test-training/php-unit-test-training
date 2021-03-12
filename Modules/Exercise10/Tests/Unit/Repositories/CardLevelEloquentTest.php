@@ -1,13 +1,10 @@
 <?php
 
-namespace Modules\Exercise10\Tests\Unit\Repository;
+namespace Modules\Exercise10\Tests\Unit\Repositories;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Modules\Exercise10\Models\CardLevel;
-use Modules\Exercise10\Contracts\Repositories\CardLevelRepository;
 use Modules\Exercise10\Repositories\CardLevelEloquent;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Mockery as m;
 
 class CardLevelEloquentTest extends TestCase

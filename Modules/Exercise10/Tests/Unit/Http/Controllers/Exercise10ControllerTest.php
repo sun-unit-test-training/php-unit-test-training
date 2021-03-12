@@ -1,11 +1,9 @@
 <?php
 
-namespace Modules\Exercise10\Tests\Unit\Http;
+namespace Modules\Exercise10\Tests\Unit\Http\Controllers;
 
 use Tests\TestCase;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Exercise10\Http\Requests\PrepaidRequest;
 use Modules\Exercise10\Contracts\Services\PrepaidInterface;
 use Modules\Exercise10\Http\Controllers\Exercise10Controller;
