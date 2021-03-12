@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise07\Tests\Services;
+namespace Modules\Exercise07\Tests\Unit\Services;
 
 use Tests\TestCase;
 use Modules\Exercise07\Services\CheckoutService;
