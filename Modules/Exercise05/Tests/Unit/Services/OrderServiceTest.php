@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise05\Tests\Services;
+namespace Modules\Exercise05\Tests\Unit\Services;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
