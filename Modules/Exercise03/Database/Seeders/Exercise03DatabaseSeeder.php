@@ -3,7 +3,7 @@
 namespace Modules\Exercise03\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Modules\Exercise03\Entities\Product;
+use Modules\Exercise03\Models\Product;
 
 class Exercise03DatabaseSeeder extends Seeder
 {

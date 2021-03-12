@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Exercise03\Tests\Services;
+namespace Modules\Exercise03\Tests\Unit\Services;
 
 use Tests\TestCase;
 use InvalidArgumentException;
-use Modules\Exercise03\Entities\Product;
+use Modules\Exercise03\Models\Product;
 use Modules\Exercise03\Services\ProductService;
 use Modules\Exercise03\Repositories\ProductRepository;
 
