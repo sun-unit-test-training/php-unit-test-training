@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise02\Tests\Http\Requests;
+namespace Modules\Exercise02\Tests\Feature\Http\Requests;
 
 use Tests\TestCase;
 use Illuminate\Support\Facades\Validator;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise02\Tests\Http\Controllers;
+namespace Modules\Exercise02\Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
 use Illuminate\View\View;
@@ -48,7 +48,7 @@ class Exercise02ControllerTest extends TestCase
         ], $response->getData());
     }
 
-    public function test_function_caculate()
+    public function test_function_calculate()
     {
         $request = \Mockery::mock(ATMRequest::class);
         $card = ATM::factory()->isVip()->create()->fresh();
@@ -59,6 +59,6 @@ class Exercise02ControllerTest extends TestCase
         $response = $this->controller->takeATMFee($request);
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
-        $this->assertEquals($correctAnswer, $response->getSession()->all()['caculate']);
+        $this->assertEquals($correctAnswer, $response->getSession()->all()['calculate']);
     }
 }
