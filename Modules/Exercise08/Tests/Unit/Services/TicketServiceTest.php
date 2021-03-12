@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise08\Tests\Services;
+namespace Modules\Exercise08\Tests\Unit\Services;
 
 use Modules\Exercise08\Services\TicketService;
 use Tests\TestCase;
@@ -20,7 +20,7 @@ class TicketServiceTest extends TestCase
         $this->ticketService = new TicketService();
     }
 
-    public function test_it_throw_exception_when_not_old_enough()
+    function test_it_throw_exception_when_not_old_enough()
     {
         $this->expectException(InvalidArgumentException::class);
         $data = $this->getSampleData();
@@ -30,7 +30,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, false);
     }
 
-    public function test_throw_exception_when_age_over_120_years_old()
+    function test_throw_exception_when_age_over_120_years_old()
     {
         $this->expectException(InvalidArgumentException::class);
         $data = $this->getSampleData();
@@ -40,7 +40,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, false);
     }
 
-    public function test_calculate_price_when_age_less_than_13_years_old()
+    function test_calculate_price_when_age_less_than_13_years_old()
     {
         $data = $this->getSampleData();
         $data['age'] = 10;
@@ -49,7 +49,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, $this->ticketService::BASE_PRICE*0.5);
     }
 
-    public function test_calculate_price_when_day_of_week_is_tuesday()
+    function test_calculate_price_when_day_of_week_is_tuesday()
     {
         $data = $this->getSampleData();
         $data['booking_date'] = '2020/09/22';
@@ -58,7 +58,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, $this->ticketService::PRICE_IN_TUESDAY);
     }
 
-    public function test_calculate_price_when_age_from_13_to_64_not_tuesday_friday()
+    function test_calculate_price_when_age_from_13_to_64_not_tuesday_friday()
     {
         $data = $this->getSampleData();
         $data['age'] = 18;
@@ -68,7 +68,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, $this->ticketService::BASE_PRICE);
     }
 
-    public function test_calculate_price_when_age_from_13_to_64_is_female_on_friday()
+    function test_calculate_price_when_age_from_13_to_64_is_female_on_friday()
     {
         $data = $this->getSampleData();
         $data['age'] = 18;
@@ -79,7 +79,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, $this->ticketService::PRICE_FEMALE_FRIDAY);
     }
 
-    public function test_calculate_price_when_age_from_13_to_64_is_male_on_friday()
+    function test_calculate_price_when_age_from_13_to_64_is_male_on_friday()
     {
         $data = $this->getSampleData();
         $data['age'] = 18;
@@ -90,7 +90,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, $this->ticketService::BASE_PRICE);
     }
 
-    public function test_calculate_price_when_age_over_65_not_tuesday_friday()
+    function test_calculate_price_when_age_over_65_not_tuesday_friday()
     {
         $data = $this->getSampleData();
         $data['age'] = 69;
@@ -101,7 +101,7 @@ class TicketServiceTest extends TestCase
         $this->assertEquals($result, $this->ticketService::PRICE_OVER_65);
     }
 
-    public function test_calculate_price_when_age_over_65_is_female_on_friday()
+    function test_calculate_price_when_age_over_65_is_female_on_friday()
     {
         $data = $this->getSampleData();
         $data['age'] = 69;

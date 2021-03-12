@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise08\Tests\Http\Controllers;
+namespace Modules\Exercise08\Tests\Feature\Http\Controllers;
 
 use Modules\Exercise08\Http\Controllers\TicketController;
 use Modules\Exercise08\Services\TicketService;
@@ -9,13 +9,13 @@ use Tests\TestCase;
 class TicketControllerTest extends TestCase
 {
     protected $ticketController;
-    protected $ticketService;
+    protected $ticketServiceMock;
 
     protected function setUp(): void
     {
         parent::setup();
 
-        $this->ticketService = \Mockery::mock(TicketService::class);
+        $this->ticketServiceMock = $this->mock(TicketService::class);
     }
 
     public function test_it_show_data_form_checkout()
@@ -81,6 +81,10 @@ class TicketControllerTest extends TestCase
 
     public function test_calculate_data_when_input_valid_return_data_booking()
     {
+        $this->ticketServiceMock
+            ->shouldReceive('calculatePrice')
+            ->andReturn(TicketService::PRICE_IN_TUESDAY);
+
         $url = action([TicketController::class, 'calculatePrice']);
 
         $response = $this->post($url, [
