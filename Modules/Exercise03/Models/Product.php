@@ -1,11 +1,15 @@
 <?php
 
-namespace Modules\Exercise03\Entities;
+namespace Modules\Exercise03\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Exercise02\Database\Factories\ProductFactory;
+use Modules\Exercise03\Database\Factories\ProductFactory;
 
+/**
+ * @property string $name
+ * @property int $type
+ */
 class Product extends Model
 {
     use HasFactory;

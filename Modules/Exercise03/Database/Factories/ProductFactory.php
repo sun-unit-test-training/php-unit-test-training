@@ -3,7 +3,7 @@
 namespace Modules\Exercise03\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Exercise03\Entities\Product;
+use Modules\Exercise03\Models\Product;
 
 class ProductFactory extends Factory
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\Exercise03\Tests\Repositories;
+namespace Modules\Exercise03\Tests\Unit\Repositories;
 
 use Tests\TestCase;
-use Modules\Exercise03\Entities\Product;
+use Modules\Exercise03\Models\Product;
 use Modules\Exercise03\Repositories\ProductRepository;
 
 class ProductRepositoryTest extends TestCase

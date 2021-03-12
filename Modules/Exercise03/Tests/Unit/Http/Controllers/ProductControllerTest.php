@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise03\Tests\Http\Controllers;
+namespace Modules\Exercise03\Tests\Unit\Http\Controllers;
 
 use Tests\TestCase;
 use Illuminate\View\View;
