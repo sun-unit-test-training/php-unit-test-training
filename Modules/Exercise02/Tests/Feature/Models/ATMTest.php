@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise02\Tests\Models;
+namespace Modules\Exercise02\Tests\Feature\Models;
 
 use Modules\Exercise02\Models\ATM;
 use Tests\SetupDatabaseTrait;
@@ -27,23 +27,5 @@ class ATMTest extends TestCase
 
         $this->assertEquals($inputs['card_id'], $atm->card_id);
         $this->assertEquals($inputs['is_vip'], $atm->is_vip);
-    }
-
-    /**
-     * This test does not count coverage for model ATM,
-     * because we are test for class property `casts`, not method?
-     *
-     * But it is added to ensure we initialize property correctly
-     */
-    public function test_field_is_vip_is_cast_to_boolean()
-    {
-        $inputs = [
-            'card_id' => '123456',
-            'is_vip' => 1,
-        ];
-
-        $atm = (new ATM())->fill($inputs);
-
-        $this->assertSame(true, $atm->is_vip);
     }
 }

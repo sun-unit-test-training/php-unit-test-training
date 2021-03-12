@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise02\Tests\Repositories;
+namespace Modules\Exercise02\Tests\Unit\Repositories;
 
 use Tests\TestCase;
 use Modules\Exercise02\Models\ATM;

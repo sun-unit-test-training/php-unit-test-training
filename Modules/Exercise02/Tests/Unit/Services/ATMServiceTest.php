@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise02\Tests\Services;
+namespace Modules\Exercise02\Tests\Unit\Services;
 
 use Carbon\Carbon;
 use InvalidArgumentException;
@@ -21,8 +21,8 @@ class ATMServiceTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $atmRepositiory = new ATMRepository(new ATM());
-        $this->atmService = new ATMService($atmRepositiory);
+        $atmRepository = new ATMRepository(new ATM());
+        $this->atmService = new ATMService($atmRepository);
         $this->vipCard = ATM::factory()->isVip()->create()->fresh();
         $this->notVipCard = ATM::factory()->isNotVip()->create()->fresh();
     }
