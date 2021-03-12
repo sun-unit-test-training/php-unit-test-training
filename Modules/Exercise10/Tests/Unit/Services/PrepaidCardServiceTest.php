@@ -1,11 +1,9 @@
 <?php
 
-namespace Modules\Exercise10\Tests\Unit\Service;
+namespace Modules\Exercise10\Tests\Unit\Services;
 
 use Tests\TestCase;
 use Mockery as m;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Exercise10\Services\PrepaidCardService;
 use Modules\Exercise10\Models\CardLevel;
 use Modules\Exercise10\Contracts\Repositories\CardLevelRepository;

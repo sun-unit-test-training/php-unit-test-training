@@ -4,10 +4,6 @@ namespace Modules\Exercise10\Tests\Unit\Models;
 
 use Tests\TestCase;
 use Modules\Exercise10\Models\CardLevel;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class CardLevelTest extends TestCase
 {
