@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise04\Tests\Services;
+namespace Modules\Exercise04\Tests\Unit\Services;
 
 use Illuminate\Support\Carbon;
 use Modules\Exercise04\Services\CalendarService;
