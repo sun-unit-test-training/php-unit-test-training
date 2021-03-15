@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise09\Tests\Services;
+namespace Modules\Exercise09\Tests\Unit\Services;
 
 use Modules\Exercise09\Constants\Combat;
 use Modules\Exercise09\Services\CombatService;

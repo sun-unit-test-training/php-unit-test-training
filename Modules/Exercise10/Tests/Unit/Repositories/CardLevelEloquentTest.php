@@ -22,7 +22,7 @@ class CardLevelEloquentTest extends TestCase
         // Mock query builder twice where
         $mModel->shouldReceive('where')->twice()->andReturn($mModel);
         // Mock query builder orderByDesc
-        $mModel->shouldReceive('orderByDesc')->times(1)->andReturn($mModel);;
+        $mModel->shouldReceive('orderByDesc')->times(1)->andReturn($mModel);
         // Mock Results of query in model
         $mModel->shouldReceive('first')->andReturn($expected);
 

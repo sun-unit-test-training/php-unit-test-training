@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise09\Tests\Http\Controllers;
+namespace Modules\Exercise09\Tests\Feature\Http\Controllers;
 
 use Modules\Exercise09\Http\Controllers\Exercise09Controller;
 use Modules\Exercise09\Services\CombatService;
