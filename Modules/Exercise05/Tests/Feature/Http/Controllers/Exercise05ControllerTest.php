@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Exercise05\Tests\Http\Controllers;
+namespace Modules\Exercise05\Tests\Feature\Http\Controllers;
 
 use Tests\TestCase;
 use Modules\Exercise05\Http\Controllers\Exercise05Controller;
