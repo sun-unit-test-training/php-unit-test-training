@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Exercise06\Tests\Services;
+namespace Modules\Exercise06\Tests\Unit\Services;
 
 use Tests\TestCase;
 use InvalidArgumentException;
-use Modules\Exercise06\Services\CaculateService;
+use Modules\Exercise06\Services\CalculateService;
 
-class CaculateServiceTest extends TestCase
+class CalculateServiceTest extends TestCase
 {
     protected $service;
 
@@ -14,16 +14,16 @@ class CaculateServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->service = new CaculateService();
+        $this->service = new CalculateService();
     }
 
-    public function test_it_throws_exception_when_bill_invalid()
+    function test_it_throws_exception_when_bill_invalid()
     {
         $this->expectException(InvalidArgumentException::class);
         $this->service->calculate(-1, false);
     }
 
-    public function test_it_caculate_when_bill_less_than_2000()
+    function test_it_calculate_when_bill_less_than_2000()
     {
         list($minBill) = $this->service::CASE_1;
         $time = $this->service->calculate($minBill - rand(0, $minBill), false);
@@ -31,7 +31,7 @@ class CaculateServiceTest extends TestCase
         $this->assertEquals(0, $time);
     }
 
-    public function test_it_caculate_when_bill_more_than_2000_and_less_than_5000()
+    function test_it_calculate_when_bill_more_than_2000_and_less_than_5000()
     {
         list($minBill, $freeTime) = $this->service::CASE_1;
         $time = $this->service->calculate($minBill + rand(0, null), false);
@@ -39,7 +39,7 @@ class CaculateServiceTest extends TestCase
         $this->assertEquals($freeTime, $time);
     }
 
-    public function test_it_caculate_when_bill_more_than_5000()
+    function test_it_calculate_when_bill_more_than_5000()
     {
         list($minBill, $freeTime) = $this->service::CASE_2;
         $time = $this->service->calculate($minBill + rand(0, null), false);
@@ -47,7 +47,7 @@ class CaculateServiceTest extends TestCase
         $this->assertEquals($freeTime, $time);
     }
 
-    public function test_it_caculate_when_bill_less_than_2000_and_user_watch_movie()
+    function test_it_calculate_when_bill_less_than_2000_and_user_watch_movie()
     {
         list($minBill) = $this->service::CASE_1;
         $time = $this->service->calculate($minBill - rand(0, $minBill), true);
@@ -55,7 +55,7 @@ class CaculateServiceTest extends TestCase
         $this->assertEquals($this->service::FREE_TIME_FOR_MOVIE, $time);
     }
 
-    public function test_it_caculate_when_bill_more_than_2000_and_less_than_5000_and_user_watch_movie()
+    function test_it_calculate_when_bill_more_than_2000_and_less_than_5000_and_user_watch_movie()
     {
         list($minBill, $freeTime) = $this->service::CASE_1;
         $time = $this->service->calculate($minBill + rand(0, null), true);
@@ -63,7 +63,7 @@ class CaculateServiceTest extends TestCase
         $this->assertEquals($freeTime + $this->service::FREE_TIME_FOR_MOVIE, $time);
     }
 
-    public function test_it_caculate_when_bill_more_than_5000_and_user_watch_movie()
+    function test_it_calculate_when_bill_more_than_5000_and_user_watch_movie()
     {
         list($minBill, $freeTime) = $this->service::CASE_2;
         $time = $this->service->calculate($minBill + rand(0, null), true);
